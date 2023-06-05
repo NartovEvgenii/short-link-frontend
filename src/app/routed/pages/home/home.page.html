@@ -1,3 +1,28 @@
-<div class="container">
-    <h2 class="text-center">Домашняя страница</h2>  
+    
+<div *ngIf="idUser" class="bg-light">
+  <h4 class="m-2">Создать короткую ссылку</h4>
+   
+  <div class="row m-2">
+    <mat-form-field [formGroup]="form" class="col">
+      <mat-label>Ссылка на ресурс</mat-label>
+      <input formControlName="fullUrl" matInput type="text">
+    </mat-form-field>
+    <button (click)="createShortLinkButtonClick()" color="primary" mat-raised-button class="col-md-auto justify-content-end">Создать</button>
   </div>
+</div>
+
+<div *ngFor="let short of shortLinkObs | async"> 
+  <div class="row m-2 border border-primary">
+
+    <div class="col">
+      <p>{{short.fullUrl}}</p>
+      <a href="{{short.fullUrl}}">{{short.fullUrl}}</a>
+    </div>
+
+    <div class="col">
+      <p>{{short.shortLinkToken}}</p>
+      <a href="{{apiUrl}}/shortLinks/{{short.shortLinkToken}}">{{apiUrl}}/shortLinks/{{short.shortLinkToken}}</a>
+    </div>
+   
+  </div>  
+</div>

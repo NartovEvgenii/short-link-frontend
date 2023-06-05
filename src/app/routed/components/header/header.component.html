@@ -2,8 +2,8 @@
     <h2 routerLink="/" class="col">Short-link-generator</h2>    
   
     <div *ngIf="!user" class="col d-flex justify-content-end">
-      <button routerLink="/login" mat-raised-button class="m-1 bg-light">Войти</button>
-      <button mat-raised-button class="m-1 bg-light">Зарегестрироваться</button>
+      <button routerLink="/login" mat-raised-button class="bg-light">Войти</button>
+      <button routerLink="/register" mat-raised-button class="bg-light">Зарегестрироваться</button>
     </div>
   
     <div *ngIf="user" class="col d-flex justify-content-end">
@@ -19,3 +19,4 @@
   
     </div>
   </mat-toolbar>
+  

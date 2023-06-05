@@ -15,10 +15,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
-import { HeaderComponent } from './routed/components/header.component';
+import { HeaderComponent } from './routed/components/header/header.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomePage } from './routed/pages/home/home.page';
 import { TokenInterceptor } from './features/services/token.interseptor';
+import { RegisterPage } from './routed/pages/register/register.page';
 
 @NgModule({  
   imports: [
@@ -43,7 +44,8 @@ import { TokenInterceptor } from './features/services/token.interseptor';
     AppComponent,
     HomePage,
     LoginPage,
-    HeaderComponent,
+    RegisterPage,
+    HeaderComponent
   ],
   providers: [
     {

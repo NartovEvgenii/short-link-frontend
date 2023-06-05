@@ -1,0 +1,29 @@
+<div class="register-form">
+    <h2 class="text-center mb-3">Register</h2>
+  
+    <div [formGroup]="form" class="w-100">
+      <mat-form-field class="w-100">
+        <mat-label>Имя</mat-label>
+        <input formControlName="name" matInput type="text">
+      </mat-form-field>
+  
+      <mat-form-field class="w-100">
+        <mat-label>Фамилия</mat-label>
+        <input formControlName="surname" matInput type="text">
+      </mat-form-field>
+  
+      <mat-form-field class="w-100">
+        <input formControlName="email" matInput type="text">
+        <mat-label>Email</mat-label>
+      </mat-form-field>
+    
+      <mat-form-field class="w-100">
+        <mat-label>Пароль</mat-label>
+        <input formControlName="password" matInput type="password">
+      </mat-form-field>
+  
+    </div>
+  
+  
+    <button (click)="onRegisterButtonClick()" color="primary" mat-raised-button>Зарегестрироваться</button>
+  </div>
