@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environment/environment";
 import { ShortLinkRequest } from "../models/short-link-request.model";
 import { ShortLink } from "../models/short-link.model";
+import { Observable } from "rxjs";
 
 
 @Injectable({
@@ -15,19 +16,23 @@ import { ShortLink } from "../models/short-link.model";
     ) {
     }
   
-    async createShortLink(shortLinkRequest: ShortLinkRequest): Promise<void> {
-      this.http.post<any>(`${environment.apiUrl}/shortLinks/generate`, shortLinkRequest)
-      .subscribe(shortLink => {
-            if (shortLink !== null) {
-
-            } else {
-
-            }
-        });      
+    createShortLink(shortLinkRequest: ShortLinkRequest): Observable<ShortLink> {
+      return this.http.post<ShortLink>(`${environment.apiUrl}/shortLinks/generate`, shortLinkRequest);      
     }
 
-    getAllShortLink() {
-      return this.http.get<ShortLink[]>(`${environment.apiUrl}/shortLinks/all`);
+    deleteShortLink(idShortLink: number): Observable<null> {
+      return this.http.delete<null>(`${environment.apiUrl}/shortLinks`, 
+                                        {params : {
+                                          'idShortLink' : idShortLink
+                                        }});      
+    }
+
+    getShortLinkByUser(idUser: number) {
+      return this.http.get<ShortLink[]>(`${environment.apiUrl}/shortLinks`, 
+                                          {params : {
+                                            'idUser' : idUser
+                                          }}
+       );
     }
   
   }

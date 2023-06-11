@@ -3,7 +3,9 @@ import { Injectable } from "@angular/core";
 import { AuthService } from "./auth.service";
 import { Observable } from "rxjs";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class TokenInterceptor implements HttpInterceptor {
 
   constructor(private readonly authService: AuthService) {
@@ -18,7 +20,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     request = request.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       }
     });
     return next.handle(request);

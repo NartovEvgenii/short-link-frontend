@@ -9,20 +9,24 @@
     </mat-form-field>
     <button (click)="createShortLinkButtonClick()" color="primary" mat-raised-button class="col-md-auto justify-content-end">Создать</button>
   </div>
-</div>
-
-<div *ngFor="let short of shortLinkObs | async"> 
-  <div class="row m-2 border border-primary">
-
-    <div class="col">
-      <p>{{short.fullUrl}}</p>
-      <a href="{{short.fullUrl}}">{{short.fullUrl}}</a>
-    </div>
-
-    <div class="col">
-      <p>{{short.shortLinkToken}}</p>
-      <a href="{{apiUrl}}/shortLinks/{{short.shortLinkToken}}">{{apiUrl}}/shortLinks/{{short.shortLinkToken}}</a>
-    </div>
-   
-  </div>  
+  <table class="w-100 m-2 table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" class="col-4">Полная ссылка</th>
+        <th scope="col" class="col-2">Токен ссылки</th>
+        <th scope="col" class="col">Короткая ссыла</th>        
+        <th scope="col" class="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let short of shortLinkObs | async; index as i">         
+          <th scope="row">{{i + 1}}</th>
+          <td><a href="{{short.fullUrl}}">{{short.fullUrl}}</a></td>
+          <td>{{short.shortLinkToken}}</td>
+          <td><a href="{{apiUrl}}/{{short.shortLinkToken}}">{{apiUrl}}/{{short.shortLinkToken}}</a></td>
+          <td><button (click)="deleteShortLinkButtonClick(short.idShortLink)" color="warn" mat-raised-button>Удалить</button></td>       
+      </tr>  
+    </tbody>
+  </table>
 </div>
